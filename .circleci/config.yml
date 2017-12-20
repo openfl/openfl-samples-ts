@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+     - image: openfl/ci-openfl-js:0.0.2
+    steps:
+     - checkout
+     - run:
+         name: Install Dependencies
+         command: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
+     - run:
+         name: Build Sample
+         command: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm run build" \;
