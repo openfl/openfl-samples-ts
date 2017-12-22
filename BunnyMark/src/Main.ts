@@ -1,3 +1,4 @@
+import Bitmap from "openfl/display/Bitmap";
 import Sprite from "openfl/display/Sprite";
 import Loader from "openfl/display/Loader";
 import URLRequest from "openfl/net/URLRequest";
@@ -33,7 +34,7 @@ export class Main extends Sprite {
 		this.addEventListener (Event.ADDED_TO_STAGE, () => {
 			var loader = new Loader ();
 			loader.contentLoaderInfo.addEventListener (Event.COMPLETE, (event) => {
-				this.start (loader.content.bitmapData);
+				this.start ((loader.content as Bitmap).bitmapData);
 			});
 			loader.load (new URLRequest ("wabbit_alpha.png"));
 		});

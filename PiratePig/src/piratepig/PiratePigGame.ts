@@ -701,7 +701,7 @@ export class PiratePigGame extends Sprite {
 			
 			if (matchedTiles.length > 0) {
 				
-				this.Score.text = this.currentScore;
+				this.Score.text = String (this.currentScore);
 				this.dropTiles ();
 				
 			}
