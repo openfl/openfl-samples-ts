@@ -4,6 +4,7 @@ import Sprite from "openfl/display/Sprite";
 import Sound from "openfl/media/Sound";
 import Font from "openfl/text/Font";
 import AssetLibrary from "openfl/utils/AssetLibrary";
+import AssetManifest from "openfl/utils/AssetManifest";
 import Assets from "openfl/utils/Assets";
 import PiratePig from "./PiratePig";
 
@@ -15,87 +16,33 @@ class Main extends Sprite {
 		
 		super ();
 		
-		// TODO: Add support for asset manifests
+		var manifest = new AssetManifest ();
 		
-		var images = [
-			{ path: "images/background_tile.png" },
-			{ path: "images/center_bottom.png" },
-			{ path: "images/cursor_highlight.png" },
-			{ path: "images/cursor.png" },
-			{ path: "images/game_bear.png" },
-			{ path: "images/game_bunny_02.png" },
-			{ path: "images/game_carrot.png" },
-			{ path: "images/game_lemon.png" },
-			{ path: "images/game_panda.png" },
-			{ path: "images/game_piratePig.png" },
-			{ path: "images/logo.png" }
-		];
-		
-		var sounds = [
-			{ paths: [ "sounds/3.ogg", "sounds/3.mp3", "sounds/3.wav" ], id: "sound3" },
-			{ paths: [ "sounds/4.ogg", "sounds/4.mp3", "sounds/4.wav" ], id: "sound4" },
-			{ paths: [ "sounds/5.ogg", "sounds/5.mp3", "sounds/5.wav" ], id: "sound5" },
-			{ paths: [ "sounds/theme.ogg", "sounds/theme.mp3", "sounds/theme.wav" ], id: "soundTheme" }
-		];
-		
-		var fonts = [
-			{ name: "Freebooter", id: "fonts/FreebooterUpdated.ttf" }
-		];
-		
-		// Hack, since the default asset library (usually) always exists
-		var library = new AssetLibrary ();
-		Assets.registerLibrary ("default", library);
-		
-		var total = images.length + sounds.length + fonts.length;
-		var loaded = 0;
-		
-		var checkLoaded = () => {
+		for (var image of [ "background_tile.png", "center_bottom.png", "cursor_highlight.png", "cursor.png", "game_bear.png", "game_bunny_02.png", "game_carrot.png", "game_lemon.png", "game_panda.png", "game_piratePig.png", "logo.png"]) {
 			
-			loaded++;
-			if (loaded == total) {
-				this.addChild (new PiratePig ());
-			}
+			manifest.addBitmapData ("images/" + image);
 			
 		}
 		
-		for (let imageAsset of images) {
+		for (var sound of [ "3", "4", "5", "theme" ]) {
 			
-			BitmapData.loadFromFile (imageAsset.path).onComplete ((bitmapData) => {
-				
-				Assets.cache.setBitmapData (imageAsset.path, bitmapData);
-				checkLoaded ();
-				
-			}).onError (function (e) {
-				console.error (e);
-			});
+			var id = "sound" + sound.charAt (0).toUpperCase () + sound.substr (1);
+			manifest.addSound ([ "sounds/" + sound + ".ogg", "sounds/" + sound + ".mp3", "sounds/" + sound + ".wav" ], id);
 			
 		}
 		
-		for (let soundAsset of sounds) {
-			
-			Sound.loadFromFiles (soundAsset.paths).onComplete ((sound) => {
-				
-				Assets.cache.setSound (soundAsset.id, sound);
-				checkLoaded ();
-				
-			}).onError ((e) => {
-				console.error (e);
-			});
-			
-		}
+		manifest.addFont ("Freebooter", "fonts/FreebooterUpdated.ttf");
 		
-		for (let fontAsset of fonts) {
+		AssetLibrary.loadFromManifest (manifest).onComplete ((library) => {
 			
-			Font.loadFromName (fontAsset.name).onComplete ((font) => {
-				
-				Assets.cache.setFont (fontAsset.id, font);
-				checkLoaded ();
-				
-			}).onError (function (e) {
-				console.error (e);
-			});
+			Assets.registerLibrary ("default", library);
+			this.addChild (new PiratePig ());
 			
-		}
+		}).onError ((e) => {
+			
+			console.error (e);
+			
+		});
 		
 	}
 	
