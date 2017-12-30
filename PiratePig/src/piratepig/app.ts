@@ -1,6 +1,6 @@
-import Application from "openfl/display/Application";
 import BitmapData from "openfl/display/BitmapData";
 import Sprite from "openfl/display/Sprite";
+import Stage from "openfl/display/Stage";
 import Sound from "openfl/media/Sound";
 import Font from "openfl/text/Font";
 import AssetLibrary from "openfl/utils/AssetLibrary";
@@ -50,16 +50,6 @@ class Main extends Sprite {
 }
 
 
-var app = new Application ();
-app.create ({
-	windows: [{
-		width: 0,
-		height: 0,
-		element: window.document.getElementById ("openfl-content"),
-		resizable: true
-	}]
-});
-app.exec ();
-
-var stage = app.window.stage;
+var stage = new Stage ();
+document.body.appendChild (stage.element);
 stage.addChild (new Main ());
