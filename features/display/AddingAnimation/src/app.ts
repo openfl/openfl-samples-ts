@@ -43,14 +43,14 @@ class App extends Sprite {
 var manifest = new AssetManifest ();
 manifest.addBitmapData ("assets/openfl.png");
 
-AssetLibrary.loadFromManifest (manifest).onComplete (function (library) {
+AssetLibrary.loadFromManifest (manifest).onComplete ((library) => {
 	
 	Assets.registerLibrary ("default", library);
 	
 	var stage = new Stage (550, 400, 0xFFFFFF, App);
 	document.body.appendChild (stage.element);
 	
-}).onError (function (e) {
+}).onError ((e) => {
 	
 	console.error (e);
 	
