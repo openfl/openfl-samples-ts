@@ -31,7 +31,7 @@ class App extends Sprite {
 	}
 	
 	
-	private client_onMetaData  = (metaData:object) => {
+	private client_onMetaData = (metaData:object) => {
 		
 		this.video.attachNetStream (this.netStream);
 		
