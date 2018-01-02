@@ -15,7 +15,7 @@ git clone https://github.com/openfl/openfl-samples-ts
 ### Choose a sample
 
 ```bash
-cd openfl-samples-ts/helloworld
+cd openfl-samples-ts/features/display/DisplayingABitmap
 ```
 
 ### Install and start
