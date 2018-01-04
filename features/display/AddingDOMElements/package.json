@@ -1,5 +1,5 @@
 {
-  "name": "addingdomelements",
+  "name": "org.openfl.samples.addingdomelements-typescript",
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
