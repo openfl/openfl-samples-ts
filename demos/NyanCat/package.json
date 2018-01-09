@@ -1,5 +1,5 @@
 {
-  "name": "nyancat",
+  "name": "org.openfl.samples.nyancat-typescript",
   "version": "1.0.0",
   "private": true,
   "devDependencies": {

@@ -12,10 +12,7 @@ class App extends Sprite {
 		
 		AssetLibrary.loadFromFile ("library.bundle").onComplete ((library:AssetLibrary) => {
 			
-			console.log ("loaded");
-			
 			var cat = library.getMovieClip ("NyanCatAnimation");
-			console.log (cat);
 			this.addChild (cat);
 			
 		}).onError (e => console.error (e));
