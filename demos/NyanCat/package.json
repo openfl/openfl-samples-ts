@@ -1,0 +1,24 @@
+{
+  "name": "nyancat",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/core-js": "0.9.36",
+    "openfl": "*",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
+  },
+  "scripts": {
+    "build": "npm run build:prod",
+    "build:dev": "npm run process-swf && webpack --config webpack.dev.js",
+    "build:prod": "npm run process-swf && webpack --config webpack.prod.js",
+    "process-swf": "openfljs process assets/library.swf dist/library.bundle",
+    "start": "npm run start:dev",
+    "start:dev": "npm run process-swf && webpack-dev-server --open --config webpack.dev.js",
+    "start:prod": "npm run process-swf && webpack-dev-server --open --config webpack.prod.js"
+  }
+}
