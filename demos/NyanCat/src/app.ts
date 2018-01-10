@@ -1,8 +1,7 @@
 import Sprite from "openfl/display/Sprite";
 import Stage from "openfl/display/Stage";
 import AssetLibrary from "openfl/utils/AssetLibrary";
-
-var libraryPath = require ("./../assets/library.swf");
+import * as libraryPath from "./../assets/library.swf";
 
 
 class App extends Sprite {
@@ -27,5 +26,3 @@ class App extends Sprite {
 
 var stage = new Stage (550, 400, 0xFFFFFF, App);
 document.body.appendChild (stage.element);
-
-declare function require (arg:string):any;
