@@ -9,9 +9,9 @@ import * as layoutPath from "./../assets/layout.swf";
 class App extends Sprite {
 	
 	
-	columnOffsetHeight:number;
-	headerOffsetWidth:number;
-	layout:MovieClip;
+	private columnOffsetHeight:number;
+	private headerOffsetWidth:number;
+	private layout:MovieClip;
 	
 	
 	constructor () {
