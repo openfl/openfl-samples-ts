@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/core-js": "0.9.36",
-    "openfl": "^7.0.0",
+    "openfl": "^7.1.2",
     "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.4",
