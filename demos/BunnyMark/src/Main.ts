@@ -8,6 +8,7 @@ import MouseEvent from "openfl/events/MouseEvent";
 import Tilemap from "openfl/display/Tilemap";
 import Tileset from "openfl/display/Tileset";
 import Bunny from "./Bunny";
+import * as Stats from "stats-js";
 
 
 export class Main extends Sprite {
@@ -15,12 +16,12 @@ export class Main extends Sprite {
 	
 	private addingBunnies:boolean;
 	private bunnies:Array<Bunny>;
-	//private fps:FPS;
 	private gravity:number;
 	private minX:number;
 	private minY:number;
 	private maxX:number;
 	private maxY:number;
+	private stats:Stats;
 	private tilemap:Tilemap;
 	private tileset:Tileset;
 	
@@ -31,13 +32,9 @@ export class Main extends Sprite {
 		
 		this.bunnies = [];
 		
-		this.addEventListener (Event.ADDED_TO_STAGE, () => {
-			var loader = new Loader ();
-			loader.contentLoaderInfo.addEventListener (Event.COMPLETE, (event) => {
-				this.start ((loader.content as Bitmap).bitmapData);
-			});
-			loader.load (new URLRequest ("wabbit_alpha.png"));
-		});
+		BitmapData.loadFromFile ("wabbit_alpha.png")
+			.onComplete ((bitmapData) => this.start (bitmapData))
+			.onError ((e) => console.error (e));
 		
 	}
 	
@@ -54,11 +51,15 @@ export class Main extends Sprite {
 		this.tileset.addRect (bitmapData.rect);
 		
 		this.tilemap = new Tilemap (this.stage.stageWidth, this.stage.stageHeight, this.tileset);
-		//tilemap = new Tilemap (100, 100, tileset);
+		this.tilemap.tileAlphaEnabled = false;
+		this.tilemap.tileColorTransformEnabled = false;
 		this.addChild (this.tilemap);
 		
-		// fps = new FPS ();
-		// addChild (fps);
+		this.stats = new Stats ();
+		this.stats.domElement.style.position = 'absolute';
+		this.stats.domElement.style.left = '0px';
+		this.stats.domElement.style.top = '0px';
+		document.body.appendChild (this.stats.domElement);
 		
 		this.stage.addEventListener (MouseEvent.MOUSE_DOWN, this.stage_onMouseDown);
 		this.stage.addEventListener (MouseEvent.MOUSE_UP, this.stage_onMouseUp);
@@ -94,6 +95,8 @@ export class Main extends Sprite {
 	
 	
 	stage_onEnterFrame = (event:Event) => {
+		
+		this.stats.begin ();
 		
 		for (var i = 0; i < this.bunnies.length; i++) {
 			
@@ -143,6 +146,8 @@ export class Main extends Sprite {
 			}
 			
 		}
+		
+		this.stats.end ();
 		
 	}
 	
