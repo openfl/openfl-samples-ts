@@ -51,8 +51,8 @@ export class Main extends Sprite {
 		this.tileset.addRect (bitmapData.rect);
 		
 		this.tilemap = new Tilemap (this.stage.stageWidth, this.stage.stageHeight, this.tileset);
-		this.tilemap.tileAlphaEnabled = false;
-		this.tilemap.tileColorTransformEnabled = false;
+		//this.tilemap.tileAlphaEnabled = false;
+		//this.tilemap.tileColorTransformEnabled = false;
 		this.addChild (this.tilemap);
 		
 		this.stats = new Stats ();
