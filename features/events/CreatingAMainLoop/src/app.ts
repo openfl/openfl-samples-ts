@@ -32,7 +32,7 @@ class App extends Sprite {
 	
 	private update (deltaTime:number):void {
 		
-		if (this.sprite.x + this.sprite.width >= stage.stageWidth || this.sprite.x < 0) {
+		if (this.sprite.x + this.sprite.width >= this.stage.stageWidth || this.sprite.x < 0) {
 			
 			this.speed *= -1;
 			
