@@ -15,8 +15,6 @@ class Script extends hxp.Script {
 		
 		super ();
 		
-		initHXCPPCache ();
-		
 		samples = [];
 		findSamples ("", samples);
 		
@@ -34,37 +32,77 @@ class Script extends hxp.Script {
 				
 				listSamples ();
 			
-			case "build", "run", "test", "update", "clean", "display":
+			case "clean":
 				
-				execSamples ();
+				cleanSamples ();
+			
+			case "npm-check-updates", "check-update", "check-updates":
+				
+				execSamples ("ncu");
 			
 			default:
 				
-				Log.error ("Unkown command \"" + command + "\"");
+				execSamples ("npm");
 			
 		}
 		
 	}
 	
 	
-	private function initHXCPPCache ():Void {
+	private function cleanSamples ():Void {
 		
-		if (!FileSystem.exists (".hxcpp_cache")) {
+		var paths = [];
+		
+		if (commandArgs.length > 0) {
 			
-			System.mkdir (".hxcpp_cache");
+			var sampleName = commandArgs.shift ();
+			if (sampleName == "*") sampleName = "all";
+			
+			for (sample in samples) {
+				if (sample.split ("/").pop () == sampleName) {
+					paths.push (sample);
+				}
+			}
+			
+			if (paths.length == 0 && sampleName == "all") {
+				paths = samples.copy ();
+			}
+			
+			if (paths.length == 0) {
+				for (sample in samples) {
+					if (StringTools.startsWith (sample, sampleName)) {
+						paths.push (sample);
+					}
+				}
+			}
+			
+			if (paths.length == 0) {
+				Log.error ("Could not find sample name \"" + sampleName + "\"");
+			}
+			
+		} else {
+			
+			paths = paths.concat (samples);
 			
 		}
 		
-		if (!flags.exists ("nocache")) {
+		for (path in paths) {
 			
-			Sys.putEnv ("HXCPP_COMPILE_CACHE", Path.tryFullPath (".hxcpp_cache"));
+			var modules = Path.combine (path, "node_modules");
+			
+			if (FileSystem.exists (modules)) {
+				
+				Log.info (Log.accentColor + "rm -r " + modules + Log.resetColor);
+				System.removeDirectory (modules);
+				
+			}
 			
 		}
 		
 	}
 	
 	
-	private function execSamples ():Void {
+	private function execSamples (script:String):Void {
 		
 		var paths = [];
 		
@@ -91,14 +129,6 @@ class Script extends hxp.Script {
 			}
 			
 			if (paths.length == 0) {
-				for (sample in samples) {
-					if (StringTools.startsWith (sample, Path.combine ("haxelib", sampleName))) {
-						paths.push (sample);
-					}
-				}
-			}
-			
-			if (paths.length == 0) {
 				Log.error ("Could not find sample name \"" + sampleName + "\"");
 			}
 			
@@ -108,97 +138,22 @@ class Script extends hxp.Script {
 			
 		}
 		
-		var targets = null;
-		
-		if (commandArgs.length > 0) {
-			
-			targets = commandArgs;
-			
-		} else {
-			
-			var hostPlatform = switch (System.hostPlatform) {
-				case WINDOWS: "windows";
-				case MAC: "mac";
-				case LINUX: "linux";
-				default: "";
-			}
-			
-			targets = [];
-			if (!flags.exists ("noneko")) targets.push ("neko");
-			if (!flags.exists ("noneko") && !flags.exists ("nocairo")) targets.push ("neko -Dcairo");
-			if (!flags.exists ("noelectron")) targets.push ("electron");
-			if (!flags.exists ("noelectron") && !flags.exists ("nocanvas")) targets.push ("electron -Dcanvas");
-			if (!flags.exists ("noelectron") && !flags.exists ("nodom")) targets.push ("electron -Ddom");
-			if (!flags.exists ("nocpp")) targets.push (hostPlatform);
-			if (!flags.exists ("noflash")) targets.push ("flash");
-			
-		}
-		
 		for (path in paths) {
 			
 			var sampleName = path.split ("/").pop ();
 			
-			for (target in targets) {
-				
-				var script = "lime";
-				var args = [ command ];
-				
-				if (FileSystem.exists (Path.combine (path, "script.hx"))) {
-					
-					script = "hxp";
-					args.push (Path.combine (path, "script.hx"));
-					if (target.split (" ")[0] == "electron") continue; // TODO, MinimalApplication
-					args = args.concat (target.split (" "));
-					
-					Log.info (Log.accentColor + script + " " + command + " " + sampleName + " " + target + Log.resetColor);
-					
-				} else if (FileSystem.exists (Path.combine (path, "package.json"))) {
-					
-					if (target != targets[0]) continue;
-					script = "npm";
-					if (target == "install") {
-						args = [ "install", "-s" ];
-					} else {
-						args = [ "start", "-s" ];
-					}
-					
-					Log.info (Log.accentColor + "cd " + path + " && " + script + " " + args.join (" ") + Log.resetColor);
-					
-				} else {
-					
-					args.push (path);
-					args = args.concat (target.split (" "));
-					
-					Log.info (Log.accentColor + script + " " + command + " " + sampleName + " " + target + Log.resetColor);
-					
-				}
-				
-				
-				
-				for (flag in flags.keys ()) {
-					args.push ("-" + flag);
-				}
-				
-				for (define in defines.keys ()) {
-					args.push ("-D");
-					if (defines.get (define) != "") {
-						args.push (define + "=" + defines.get (define));
-					} else {
-						args.push (define);
-					}
-				}
-				
-				if (target == "flash" && targets.length > 1) {
-					args.push ("-notrace");
-				}
-				
-				if (script == "npm") {
-					System.runCommand (path, script, args);
-				} else {
-					System.runCommand ("", script, args);
-				}
-				
+			args = [ command ].concat (commandArgs);
+			for (flag in flags.keys ()) {
+				args.push ("-" + flag);
 			}
+			for (option in options.keys ()) {
+				args.push (option);
+			}
+			args.push ("-s");
+			
+			Log.info (Log.accentColor + "cd " + path + " && " + script + " " + args.join (" ") + Log.resetColor);
+			
+			System.runCommand (path, script, args);
 			
 		}
 		
@@ -207,24 +162,29 @@ class Script extends hxp.Script {
 	
 	private function findSamples (path:String, list:Array<String>):Void {
 		
+		if (path == "node_modules") return;
+		
 		for (fileName in FileSystem.readDirectory (path != "" ? path : Sys.getCwd ())) {
 			
 			var filePath = Path.combine (path, fileName);
 			
 			if (FileSystem.isDirectory (filePath)) {
 				
-				for (file in [ "project.xml", "script.hx", "package.json" ]) {
+				var match = false;
+				
+				for (file in [ "package.json" ]) {
 					
 					if (FileSystem.exists (Path.combine (filePath, file))) {
 						
 						list.push (Path.standardize (filePath));
-						return;
+						match = true;
+						break;
 						
 					}
 					
 				}
 				
-				findSamples (filePath, list);
+				if (!match) findSamples (filePath, list);
 				
 			}
 			

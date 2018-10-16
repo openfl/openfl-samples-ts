@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "@types/core-js": "0.9.36",
-    "openfl": "^7.0.0",
-    "ts-loader": "^3.2.0",
-    "typescript": "^2.6.2",
-    "uglifyjs-webpack-plugin": "^1.1.4",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
-    "webpack-merge": "^4.1.1"
+    "@types/core-js": "^2.5.0",
+    "actuate": "^1.8.8",
+    "openfl": "^8.6.2",
+    "ts-loader": "^5.2.2",
+    "typescript": "^3.1.3",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
   },
   "scripts": {
     "build": "npm run build:prod",
