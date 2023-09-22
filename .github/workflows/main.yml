@@ -51,3 +51,184 @@ jobs:
           name: PiratePig
           path: demos/PiratePig/dist
           if-no-files-found: error
+      - name: Build features/display/AddingAnimation
+        working-directory: features/display/AddingAnimation
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: AddingAnimation
+          path: features/display/AddingAnimation/dist
+          if-no-files-found: error
+      - name: Build features/display/DisplayingABitmap
+        working-directory: features/display/DisplayingABitmap
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: DisplayingABitmap
+          path: features/display/DisplayingABitmap/dist
+          if-no-files-found: error
+      - name: Build features/display/DrawingShapes
+        working-directory: features/display/DrawingShapes
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: DrawingShapes
+          path: features/display/DrawingShapes/dist
+          if-no-files-found: error
+      - name: Build features/display/UsingBitmapData
+        working-directory: features/display/UsingBitmapData
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: UsingBitmapData
+          path: features/display/UsingBitmapData/dist
+          if-no-files-found: error
+      - name: Build features/display/UsingSWFAssets
+        working-directory: features/display/UsingSWFAssets
+        # TODO: remove --force when swf-loader is updated
+        run: |
+          npm ci --force
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: UsingSWFAssets
+          path: features/display/UsingSWFAssets/dist
+          if-no-files-found: error
+      - name: Build features/display3D/HelloTriangle
+        working-directory: features/display3D/HelloTriangle
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: HelloTriangle
+          path: features/display3D/HelloTriangle/dist
+          if-no-files-found: error
+      - name: Build features/display3D/Stage3DCamera
+        working-directory: features/display3D/Stage3DCamera
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Stage3DCamera
+          path: features/display3D/Stage3DCamera/dist
+          if-no-files-found: error
+      - name: Build features/display3D/Stage3DMipmap
+        working-directory: features/display3D/Stage3DMipmap
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Stage3DMipmap
+          path: features/display3D/Stage3DMipmap/dist
+          if-no-files-found: error
+      - name: Build features/events/CreatingAMainLoop
+        working-directory: features/events/CreatingAMainLoop
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: CreatingAMainLoop
+          path: features/events/CreatingAMainLoop/dist
+          if-no-files-found: error
+      - name: Build features/events/CreatingCustomEvents
+        working-directory: features/events/CreatingCustomEvents
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: CreatingCustomEvents
+          path: features/events/CreatingCustomEvents/dist
+          if-no-files-found: error
+      - name: Build features/events/HandlingKeyboardEvents
+        working-directory: features/events/HandlingKeyboardEvents
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: HandlingKeyboardEvents
+          path: features/events/HandlingKeyboardEvents/dist
+          if-no-files-found: error
+      - name: Build features/events/HandlingMouseEvents
+        working-directory: features/events/HandlingMouseEvents
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: HandlingMouseEvents
+          path: features/events/HandlingMouseEvents/dist
+          if-no-files-found: error
+      - name: Build features/media/PlayingSound
+        working-directory: features/media/PlayingSound
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: PlayingSound
+          path: features/media/PlayingSound/dist
+          if-no-files-found: error
+      - name: Build features/media/PlayingVideo
+        working-directory: features/media/PlayingVideo
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: PlayingVideo
+          path: features/media/PlayingVideo/dist
+          if-no-files-found: error
+      - name: Build features/text/AddingText
+        working-directory: features/text/AddingText
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: AddingText
+          path: features/text/AddingText/dist
+          if-no-files-found: error
