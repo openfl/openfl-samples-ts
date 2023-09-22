@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Build demos/BunnyMark
+        working-directory: demos/BunnyMark
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: BunnyMark
+          path: demos/BunnyMark/dist
+          if-no-files-found: error
+      - name: Build demos/NyanCat
+        working-directory: demos/NyanCat
+        # TODO: remove --force when swf-loader is updated
+        run: |
+          npm ci --force
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: NyanCat
+          path: demos/NyanCat/dist
+          if-no-files-found: error
+      - name: Build demos/PiratePig
+        working-directory: demos/PiratePig
+        run: |
+          npm ci
+          npm run build:prod
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: PiratePig
+          path: demos/PiratePig/dist
+          if-no-files-found: error
