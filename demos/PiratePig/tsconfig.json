@@ -1,17 +1,15 @@
 {
 	"compilerOptions": {
+		"outDir": "dist",
 		"target": "es5",
-		"baseUrl": ".",
+		"module": "CommonJS",
+		"moduleResolution": "node",
 		"paths": {
-			"openfl": ["node_modules/openfl/lib/openfl"],
-			"openfl/*": ["node_modules/openfl/lib/openfl/*"],
-			"motion": ["node_modules/actuate/lib/motion"],
-			"motion/*": ["node_modules/actuate/lib/motion/*"]
+			"openfl": ["./node_modules/openfl/lib/openfl"],
+			"openfl/*": ["./node_modules/openfl/lib/openfl/*"],
+			"motion": ["./node_modules/actuate/lib/motion"],
+			"motion/*": ["./node_modules/actuate/lib/motion/*"]
 		},
-		"lib": ["es2017", "dom"],
 		"sourceMap": true
-	},
-	"files": [
-		"src/piratepig/app.ts"
-	]
+	}
 }
