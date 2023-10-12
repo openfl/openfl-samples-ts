@@ -5,7 +5,7 @@
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
     "openfl": "^8.9.6",
-    "swf-loader": "^1.0.1",
+    "swf-loader": "^1.0.2",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",

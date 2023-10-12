@@ -28,9 +28,8 @@ jobs:
           if-no-files-found: error
       - name: Build demos/NyanCat
         working-directory: demos/NyanCat
-        # TODO: remove --force when swf-loader is updated
         run: |
-          npm ci --force
+          npm ci
           npm run build:prod
         env:
           CI: true
@@ -101,9 +100,8 @@ jobs:
           if-no-files-found: error
       - name: Build features/display/UsingSWFAssets
         working-directory: features/display/UsingSWFAssets
-        # TODO: remove --force when swf-loader is updated
         run: |
-          npm ci --force
+          npm ci
           npm run build:prod
         env:
           CI: true
