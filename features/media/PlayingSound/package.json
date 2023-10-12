@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "actuate": "1.8.9-beta",
+    "actuate": "^1.9.0",
     "copy-webpack-plugin": "^11.0.0",
     "openfl": "^8.9.6",
     "ts-loader": "^9.4.4",
