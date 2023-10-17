@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
-    "openfl": "^8.9.6",
+    "openfl": "^9.3.1",
     "stats-js": "^1.0.1",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",

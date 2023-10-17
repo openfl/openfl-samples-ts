@@ -11,8 +11,6 @@ export class Main extends Sprite {
 		
 		super ();
 		
-		console.log (this.stage);
-		
 		var loader = new Loader ();
 		loader.contentLoaderInfo.addEventListener (Event.COMPLETE, this.loader_onComplete);
 		loader.load (new URLRequest ("openfl.png"));
