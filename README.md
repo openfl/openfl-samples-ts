@@ -1,8 +1,10 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.md) [![Build Status](https://img.shields.io/circleci/project/github/openfl/openfl-samples-ts/master.svg)](https://circleci.com/gh/openfl/openfl-samples-ts)
 
 
-OpenFL Samples (TypeScript)
-===========================
+OpenFL npm Samples (TypeScript)
+===============================
+
+These samples demonstrate how to use the [OpenFL npm module](https://www.openfl.org/learn/npm/getting-started/) with [TypeScript](https://www.typescriptlang.org/).
 
 ## Get Started
 
