@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Build demos/BunnyMark
@@ -21,7 +21,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: BunnyMark
           path: demos/BunnyMark/dist
@@ -33,7 +33,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: NyanCat
           path: demos/NyanCat/dist
@@ -45,7 +45,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: PiratePig
           path: demos/PiratePig/dist
@@ -57,7 +57,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: AddingAnimation
           path: features/display/AddingAnimation/dist
@@ -69,7 +69,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: DisplayingABitmap
           path: features/display/DisplayingABitmap/dist
@@ -81,7 +81,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: DrawingShapes
           path: features/display/DrawingShapes/dist
@@ -93,7 +93,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: UsingBitmapData
           path: features/display/UsingBitmapData/dist
@@ -105,7 +105,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: UsingSWFAssets
           path: features/display/UsingSWFAssets/dist
@@ -117,7 +117,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: HelloTriangle
           path: features/display3D/HelloTriangle/dist
@@ -129,7 +129,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Stage3DCamera
           path: features/display3D/Stage3DCamera/dist
@@ -141,7 +141,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Stage3DMipmap
           path: features/display3D/Stage3DMipmap/dist
@@ -153,7 +153,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: CreatingAMainLoop
           path: features/events/CreatingAMainLoop/dist
@@ -165,7 +165,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: CreatingCustomEvents
           path: features/events/CreatingCustomEvents/dist
@@ -177,7 +177,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: HandlingKeyboardEvents
           path: features/events/HandlingKeyboardEvents/dist
@@ -189,7 +189,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: HandlingMouseEvents
           path: features/events/HandlingMouseEvents/dist
@@ -201,7 +201,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: PlayingSound
           path: features/media/PlayingSound/dist
@@ -213,7 +213,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: PlayingVideo
           path: features/media/PlayingVideo/dist
@@ -225,7 +225,7 @@ jobs:
           npm run build:prod
         env:
           CI: true
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: AddingText
           path: features/text/AddingText/dist
