@@ -1,4 +1,4 @@
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.md) [![Build Status](https://img.shields.io/circleci/project/github/openfl/openfl-samples-ts/master.svg)](https://circleci.com/gh/openfl/openfl-samples-ts)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.md) [![Build Status](https://img.shields.io/github/actions/workflow/status/openfl/openfl-samples-ts/main.yml?branch=master)](https://github.com/openfl/openfl-samples-ts/actions)
 
 
 OpenFL npm Samples (TypeScript)
